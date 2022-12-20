@@ -9,7 +9,8 @@ app.use(express.json({limit: '50mb'}));
 app.get('/',(req,res)=>{
     res.json({
         status: "1",
-        msg: "Hola mundo"
+        nombre: "Luis Andrés de la Peña Pineda",
+        carne: "201900450"
     })
 })
 

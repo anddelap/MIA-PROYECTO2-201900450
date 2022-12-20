@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import "../styles/views/Login.css";
 import { Link } from "react-router-dom";
 
-export default function signin() {
+export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
