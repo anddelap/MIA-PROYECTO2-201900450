@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import "../styles/views/Login.css";
 import { Link } from "react-router-dom";
+import GeneralLayout from "../layouts/GeneralLayout";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -21,46 +22,39 @@ export default function Login() {
   }
 
   return (
-    <>
-    <Navbar bg="dark">
-      <Navbar.Brand href="#home">
-        <h2 className="brand">
-          Proyecto 2
-        </h2>
-      </Navbar.Brand>
-    </Navbar>
-    <h2 className="title">
-          Log in
-    </h2>
-    <div className="Login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email / Usuario</Form.Label>
-          <Form.Control
-            autoFocus
-            type="user"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group size="lg" controlId="password" className="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <div className="btns">
-          <Button className="SubmitBtn" block="true" size="lg" type="submit" disabled={!validateForm()}>
+    <GeneralLayout>
+      <h2 className="title">
             Log in
-          </Button>
-          <div className="signin">
-            ¿No tienes cuenta? <Link to="signin">Sign in</Link>
+      </h2>
+      <div className="Login">
+        <Form onSubmit={handleSubmit}>
+          <Form.Group size="lg" controlId="email">
+            <Form.Label>Email / Usuario</Form.Label>
+            <Form.Control
+              autoFocus
+              type="user"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group size="lg" controlId="password" className="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <div className="btns">
+            <Button className="SubmitBtn" block="true" size="lg" type="submit" disabled={!validateForm()}>
+              Log in
+            </Button>
+            <div className="signin">
+              ¿No tienes cuenta? <Link to="signin">Sign in</Link>
+            </div>
           </div>
-        </div>
-      </Form>
-    </div>
-    </>
+        </Form>
+      </div>
+    </GeneralLayout>
   );
 }
