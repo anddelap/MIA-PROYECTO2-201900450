@@ -56,3 +56,16 @@ export const UserOptions = [
         link: "/user/car"
     },
 ]
+
+export const RecepcionistOptions = [
+    {
+        title: "Revisar viajes",
+        icon:  <MdAirplanemodeActive size={70}/>,
+        link: "/user/fly"
+    },
+    {
+        title: "Revisar automóvil",
+        icon:  <FaCarAlt size={70}/>,
+        link: "/user/car"
+    }
+]

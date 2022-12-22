@@ -20,6 +20,13 @@
             "mail": "andres@mail.com",
             "password": "1234",
             "role": "recepcionist"
+        },
+        {
+            "name": "sgfdfg",
+            "user": "hjghj",
+            "mail": "ldelap14@gmail.com",
+            "password": "1234",
+            "role": "admin"
         }
     ]
 }
