@@ -5,7 +5,7 @@ import { UserOptions } from '../utilities/options';
 
 export default function UserMenu() {
   return (
-    <GeneralLayout>
+    <GeneralLayout logout>
         <h2 className="am-title">
             ¡Bienvenido!
         </h2>

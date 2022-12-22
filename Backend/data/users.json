@@ -1,0 +1,25 @@
+{
+    "users": [
+        {
+            "name": "Administrator",
+            "user": "admin",
+            "mail": "admin@mail.com",
+            "password": "1234",
+            "role": "admin"
+        },
+        {
+            "name": "Luis",
+            "user": "luis",
+            "mail": "luis@mail.com",
+            "password": "1234",
+            "role": "turist"
+        },
+        {
+            "name": "Andres",
+            "user": "andres",
+            "mail": "andres@mail.com",
+            "password": "1234",
+            "role": "recepcionist"
+        }
+    ]
+}

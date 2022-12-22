@@ -7,7 +7,7 @@ import MenuItem from '../components/MenuItem';
 
 export default function AdministratorMenu() {
   return (
-    <GeneralLayout>
+    <GeneralLayout logout>
         <h2 className="am-welcome">
             ¡Bienvenido!
         </h2>

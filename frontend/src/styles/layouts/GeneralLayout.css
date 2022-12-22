@@ -1,0 +1,11 @@
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+    color: white;
+}
+
+.nav-link {
+    margin-right: 40px;
+    text-decoration: underline !important;
+}

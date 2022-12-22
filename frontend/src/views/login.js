@@ -1,30 +1,76 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import "../styles/views/Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GeneralLayout from "../layouts/GeneralLayout";
+import { useUserLogin } from "../api/usersApi";
+import { QueryClient } from "react-query";
+import Error from "../components/Error";
+
+const queryClient = new QueryClient();
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showError, setShowError] = useState(false);
+  const navigate = useNavigate();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
 
+  const { mutate: mutLogin, data, isLoading, isError, error } = useUserLogin();
+
+  useEffect(() => {
+    if (data) {
+      if (data.data.status === 1) {
+        setShowError(false);
+        if (data.data.usuario.role === "admin") {
+          navigate("/admin");
+        } else if (data.data.usuario.role === "turist") {
+          navigate("/user");
+        } else if (data.data.usuario.role === "recepcionist") {
+          navigate("/recepcionist");
+        }
+      } else {
+        setShowError(true);
+      }
+    }
+  }, [data])
+  
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(email)
-    console.log(password)
+    queryClient.invalidateQueries('user');
+    setShowError(false);
+    const info = {
+      "user": email,
+      "password": password,
+    }
+    mutLogin(info)
+    /* console.log(data.data.status); */
+    /* if (data) {
+      if (data.data.status === 1) {
+        setShowError(false);
+        if (data.data.usuario.role === "admin") {
+          navigate("/admin");
+        } else if (data.data.usuario.role === "turist") {
+          navigate("/user");
+        } else if (data.data.usuario.role === "recepcionist") {
+          navigate("/recepcionist");
+        }
+      } else {
+        setShowError(true);
+      }
+    } */
   }
 
   return (
     <GeneralLayout>
       <h2 className="title">
-            Log in
+        Log in
       </h2>
       <div className="Login">
         <Form onSubmit={handleSubmit}>
@@ -52,6 +98,7 @@ export default function Login() {
             <div className="signin">
               ¿No tienes cuenta? <Link to="signin">Sign in</Link>
             </div>
+            <Error msg={data?.data?.msg} showw={showError} />
           </div>
         </Form>
       </div>
