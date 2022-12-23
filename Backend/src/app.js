@@ -15,6 +15,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/usuarios',require('./routes/usuario.route.js'));
-
+app.use('/carros',require('./routes/car.route.js'));
+app.use('/viajes',require('./routes/viaje.route.js'));
 
 module.exports = app;
