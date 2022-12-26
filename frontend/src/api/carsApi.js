@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
-
-const baseUrl = 'http://localhost:3200';
+import { variable } from './variables';
+//const baseUrl = 'http://localhost:3200';
+const baseUrl = variable.base_url_aws;
 
 const api = axios.create({
     baseURL: baseUrl,

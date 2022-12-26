@@ -82,7 +82,6 @@ export default function Signin() {
           <Form.Group size="lg" controlId="usuario">
             <Form.Label>Usuario</Form.Label>
             <Form.Control
-              autoFocus
               type="text"
               value={user}
               onChange={(e) => setUser(e.target.value)}
@@ -91,7 +90,6 @@ export default function Signin() {
           <Form.Group size="lg" controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              autoFocus
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -105,7 +103,7 @@ export default function Signin() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-          <Form.Group size="lg" controlId="password" className="password">
+          <Form.Group size="lg" controlId="Cpassword" className="password">
             <Form.Label>Confirmar contraseña</Form.Label>
             <Form.Control
               type="password"
