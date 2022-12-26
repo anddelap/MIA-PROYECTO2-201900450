@@ -67,4 +67,11 @@ router.post('/addUser',[
 ], usuarioController.addUser
 )
 
+// Eliminar usuario de json
+router.post('/deleteUser',[
+    check('user','Nombre de usuario obligatorio').not().isEmpty(),
+    validateAtributes
+], usuarioController.deleteUser)
+
+
 module.exports = router;

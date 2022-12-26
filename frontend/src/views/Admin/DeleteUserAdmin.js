@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button';
 import Form from "react-bootstrap/Form";
+import { useDeleteUser } from '../../api/usersApi';
 import Correct from '../../components/Correct';
 import Error from '../../components/Error';
 import GeneralLayout from '../../layouts/GeneralLayout'
@@ -14,6 +15,21 @@ export default function DeleteUserAdmin() {
     return user.length > 0;
   }
 
+  const { mutate: mutDeletUser, data, isLoading, isError, error } = useDeleteUser();
+
+  useEffect(() => {
+    if (data) {
+      console.log(data?.data);
+      if (data.data.status === 1) {
+        setShowError(false);
+        setShowCorrect(true);
+        //navigate("/")
+      } else {
+        setShowError(true);
+      }
+    }
+  }, [data])
+
   function handleSubmit(event) {
     event.preventDefault();
     setShowCorrect(false);
@@ -23,7 +39,7 @@ export default function DeleteUserAdmin() {
       "user": user
     }
     console.log(info)
-    //mutAddUser(info)
+    mutDeletUser(info)
   }
 
   return (
@@ -50,8 +66,8 @@ export default function DeleteUserAdmin() {
               {/* <div className="signin">
                 ¿Ya tienes cuenta? <Link to="/">Log in</Link>
               </div> */}
-              <Error msg={"data?.data?.msg"}  showw={showError}/>
-              <Correct msg={"data?.data?.msg"} showw={showCorrect}/>
+              <Error msg={data?.data?.msg}  showw={showError}/>
+              <Correct msg={data?.data?.msg} showw={showCorrect}/>
             </div>
           </Form>
         </div>

@@ -53,3 +53,18 @@ export const useAddUser = () =>{
         }
     });
 }
+
+// Delete user
+
+export const deleteUser = (user) => {
+    return api.post('/usuarios/deleteUser', user)
+};
+
+export const useDeleteUser = () =>{
+    //console.log(useMutation(logIn))
+    return useMutation(deleteUser,{
+        onSuccess: (data) => {
+            console.log(data)
+        }
+    });
+}
