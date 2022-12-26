@@ -84,7 +84,6 @@ export default function UserRegistryAdmin() {
             <Form.Group size="lg" controlId="usuario" className="ura-password">
               <Form.Label>Usuario</Form.Label>
               <Form.Control
-                autoFocus
                 type="text"
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
@@ -93,7 +92,6 @@ export default function UserRegistryAdmin() {
             <Form.Group size="lg" controlId="email" className="ura-password">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                autoFocus
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

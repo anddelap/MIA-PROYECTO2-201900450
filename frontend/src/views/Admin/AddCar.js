@@ -78,7 +78,6 @@ export default function AddCar() {
           <Form.Group size="lg" controlId="marca" className="ura-password">
             <Form.Label>Marca</Form.Label>
             <Form.Control
-              autoFocus
               type="text"
               value={marca}
               onChange={(e) => setMarca(e.target.value)}
@@ -87,7 +86,6 @@ export default function AddCar() {
           <Form.Group size="lg" controlId="destination" className="ura-password">
             <Form.Label>Placa</Form.Label>
             <Form.Control
-              autoFocus
               type="text"
               value={placa}
               onChange={(e) => setPlaca(e.target.value)}

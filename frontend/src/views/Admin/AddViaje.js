@@ -73,7 +73,6 @@ export default function AddViaje() {
             <Form.Group size="lg" controlId="origin" className="ura-password">
               <Form.Label>Ciudad de origen</Form.Label>
               <Form.Control
-                autoFocus
                 type="text"
                 value={origin}
                 onChange={(e) => setOrigin(e.target.value)}
@@ -82,7 +81,6 @@ export default function AddViaje() {
             <Form.Group size="lg" controlId="destination" className="ura-password">
               <Form.Label>Ciudad de destino</Form.Label>
               <Form.Control
-                autoFocus
                 type="text"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
@@ -112,8 +110,8 @@ export default function AddViaje() {
               {/* <div className="signin">
                 ¿Ya tienes cuenta? <Link to="/">Log in</Link>
               </div> */}
-              <Error msg="Las contraseñas no coinciden" showw={showError}/>
-              <Correct msg={"data?.data?.msg"} showw={showCorrect}/>
+              <Error msg={data?.data?.msg}  showw={showError}/>
+              <Correct msg={data?.data?.msg} showw={showCorrect}/>
             </div>
           </Form>
         </div>
