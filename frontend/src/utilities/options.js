@@ -10,17 +10,17 @@ export const AdminMenu = [
     {
         title: "Crear usuario",
         icon:  <FaUserPlus size={70}/>,
-        link: "/admin-menu/add-user"
+        link: "/admin/add-user"
     },
     {
         title: "Eliminar usuario",
         icon:  <FaUserMinus size={70}/>,
-        link: "/admin-menu/delete-user"
+        link: "/admin/delete-user"
     },
     {
         title: "Historial de vuelos",
         icon:  <FaHistory size={70}/>,
-        link: "/admin-menu/history"
+        link: "/admin/history"
     },
     {
         title: "Agregar viaje",

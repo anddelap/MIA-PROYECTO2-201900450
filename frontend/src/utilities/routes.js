@@ -30,15 +30,15 @@ export const rutas = [
         element: AdministratorMenu
     },
     {
-        path: "/admin-menu/add-user",
+        path: "/admin/add-user",
         element: UserRegistryAdmin
     },
     {
-        path: "/admin-menu/delete-user",
+        path: "/admin/delete-user",
         element: DeleteUserAdmin
     },
     {
-        path: "/admin-menu/history",
+        path: "/admin/history",
         element: HistoryAdmin
     },
     {
