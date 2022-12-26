@@ -7,8 +7,12 @@ import HistoryAdmin from '../views/Admin/HistoryAdmin';
 import UserRegistryAdmin from '../views/Admin/UserRegistryAdmin';
 import AdministratorMenu from '../views/AdministratorMenu';
 import Login from '../views/login';
+import CarsRecepcionist from '../views/Recepcionist/CarsRecepcionist';
+import ViajeRecepcionist from '../views/Recepcionist/ViajeRecepcionist';
 import RecepcionistMenu from '../views/RecepcionistMenu';
 import Signin from '../views/Signin';
+import CarsTurist from '../views/Turist/CarsTurist';
+import ViajeTurist from '../views/Turist/ViajeTurist';
 import UserMenu from '../views/UserMenu';
 
 export const rutas = [
@@ -58,9 +62,25 @@ export const rutas = [
         path: "/user",
         element: UserMenu
     },
+    {
+        path: "/user/fly",
+        element: ViajeTurist
+    },
+    {
+        path: "/user/car",
+        element: CarsTurist
+    },
     //Routes for recepcionist
     {
         path: "/recepcionist",
         element: RecepcionistMenu
+    },
+    {
+        path: "/recepcionist/fly",
+        element: ViajeRecepcionist
+    },
+    {
+        path: "/recepcionist/car",
+        element: CarsRecepcionist
     }
 ]

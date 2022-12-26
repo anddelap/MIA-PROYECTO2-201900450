@@ -61,11 +61,11 @@ export const RecepcionistOptions = [
     {
         title: "Revisar viajes",
         icon:  <MdAirplanemodeActive size={70}/>,
-        link: "/user/fly"
+        link: "/recepcionist/fly"
     },
     {
         title: "Revisar automóvil",
         icon:  <FaCarAlt size={70}/>,
-        link: "/user/car"
+        link: "/recepcionist/car"
     }
 ]
