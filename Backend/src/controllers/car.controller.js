@@ -56,8 +56,40 @@ const deleteCar = async (req,res) => {
     }
 }
 
+//Agregar reservacion de carro
+
+const addReservacion = async (req,res) => {
+    const fs = require("fs");
+    const {user,car} = req.body;
+    const reservacion = require("../../data/reservationsCars.json");
+    const cars = require("../../data/cars.json");
+    const newCars = cars.cars.filter(c => c.placa != car.placa);
+    cars.cars = newCars;
+    reservacion.reservations.push({
+        "user":user,
+        "car":car
+    })
+    cars.cars.push(car);
+    fs.writeFile("data/cars.json", JSON.stringify(cars,null,4), (err) => {
+        console.log(err)
+    })
+    fs.writeFile("data/reservationsCars.json", JSON.stringify(reservacion,null,4), (err) => {
+        if (err) {
+            res.json({
+                status: 0,
+                msg: "Error: no se pudo crear la reservacion",
+            })
+        }else{
+            res.json({
+                status: 1,
+                msg: "Reservacion creada correctamente",
+            })
+        }
+    })
+}
 
 module.exports = {
     addCar,
-    deleteCar
+    deleteCar,
+    addReservacion
 }

@@ -9,6 +9,10 @@ const api = axios.create({
     baseURL: baseUrl,
 });
 
+// Get Viajes
+
+export const getViajes = () => api.get('/viajes/getViajes').then((res) => res.data);
+
 // Add Viaje
 
 export const addViaje = (viaje) => {
@@ -36,6 +40,20 @@ export const deleteViaje = (viaje) => {
 export const useDeleteViaje = () =>{
     //console.log(useMutation(logIn))
     return useMutation(deleteViaje,{
+        onSuccess: (data) => {
+            console.log(data)
+        }
+    });
+}
+
+// Add Reservacion
+
+export const addReservacion = (reservacion) => {
+    return api.post('/viajes/addReservacion', reservacion)
+}
+
+export const useAddReservacion = () =>{
+    return useMutation(addReservacion,{
         onSuccess: (data) => {
             console.log(data)
         }

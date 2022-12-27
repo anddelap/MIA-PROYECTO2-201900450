@@ -9,6 +9,10 @@ const api = axios.create({
     baseURL: baseUrl,
 });
 
+// Get Cars
+
+export const getCars = () => api.get('/carros/getCars').then((res) => res.data);
+
 // Add Viaje
 
 export const addCars = (car) => {
@@ -35,6 +39,20 @@ export const deleteCar = (car) => {
 
 export const useDeleteCar = () =>{
     return useMutation(deleteCar,{
+        onSuccess: (data) => {
+            console.log(data)
+        }
+    });
+}
+
+//Add Reservacion
+
+export const addReservation = (reservation) => {
+    return api.post('/carros/addReservacion', reservation)
+}
+
+export const useAddReservation = () =>{
+    return useMutation(addReservation,{
         onSuccess: (data) => {
             console.log(data)
         }
