@@ -1,10 +1,54 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+require('dotenv').config();
 //const cors = require('cors');
 
 app.use(express.json({limit: '50mb'}));
 app.use(cors());
+
+const USER = process.env.U;
+const PASSWORD = process.env.PASS;
+const MAIL = process.env.MAIL;
+const NAME = process.env.NAME;
+
+console.log(USER);
+console.log(PASSWORD);
+console.log(MAIL);
+console.log(NAME);
+
+function createAdmin (user, password, email, name) {
+    
+    const fs = require("fs/promises");
+    const users = require("../data/users.json");
+    const admin = {
+        "name":name,
+        "user":user,
+        "mail":email,
+        "password":password,
+        "role":"admin",
+    }
+    const Cleanusers = {
+        "users":[
+            admin
+        ]
+    }
+    users.users.push(admin);
+    const cleanuser = JSON.stringify(users,null,4)
+    //console.log(cleanuser);
+    try {
+        fs.writeFile("data/users.json",cleanuser)
+        console.log("Admin creado correctamente");   
+    } catch (error) {
+        console.log(error);
+        console.log("Error: no se pudo crear el admin");
+    }
+
+}
+
+
+//createAdmin(USER, PASSWORD, MAIL, NAME);
+
 //ROUTES
 
 app.get('/',(req,res)=>{

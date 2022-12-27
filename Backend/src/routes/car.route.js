@@ -22,4 +22,11 @@ router.post('/addCar',[
 ], carController.addCar
 )
 
+//Eliminar Carros
+router.post('/deleteCar',[
+    check('placa','Placa obligatorio').not().isEmpty(),
+    validateAtributes
+], carController.deleteCar
+)
+
 module.exports = router;

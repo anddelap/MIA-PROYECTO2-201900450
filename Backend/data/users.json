@@ -1,30 +1,9 @@
 {
     "users": [
         {
-            "name": "Administrator",
+            "name": "Admin",
             "user": "admin",
-            "mail": "admin@mail.com",
-            "password": "1234",
-            "role": "admin"
-        },
-        {
-            "name": "Luis",
-            "user": "luis",
-            "mail": "luis@mail.com",
-            "password": "1234",
-            "role": "turist"
-        },
-        {
-            "name": "Andres",
-            "user": "andres",
-            "mail": "andres@mail.com",
-            "password": "1234",
-            "role": "recepcionist"
-        },
-        {
-            "name": "sgfdfg",
-            "user": "hjghj",
-            "mail": "ldelap14@gmail.com",
+            "email": "admin@mail.com",
             "password": "1234",
             "role": "admin"
         }

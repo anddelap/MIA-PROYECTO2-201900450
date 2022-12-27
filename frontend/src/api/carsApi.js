@@ -26,3 +26,17 @@ export const useAddCars = () =>{
         }
     });
 }
+
+//Delete Car
+
+export const deleteCar = (car) => {
+    return api.post('/carros/deleteCar', car)
+}
+
+export const useDeleteCar = () =>{
+    return useMutation(deleteCar,{
+        onSuccess: (data) => {
+            console.log(data)
+        }
+    });
+}

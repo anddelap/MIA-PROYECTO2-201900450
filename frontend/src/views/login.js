@@ -7,7 +7,7 @@ import "../styles/views/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import GeneralLayout from "../layouts/GeneralLayout";
 import { useUserLogin } from "../api/usersApi";
-import { QueryClient } from "react-query";
+import { QueryClient, useQuery, useQueryClient } from "react-query";
 import Error from "../components/Error";
 
 const queryClient = new QueryClient();
@@ -22,7 +22,27 @@ export default function Login() {
     return email.length > 0 && password.length > 0;
   }
 
+  const useGetFetchQuery = (name) => {
+    const queryClient = useQueryClient();
+
+    return queryClient.getQueryData(name);
+  };
+
   const { mutate: mutLogin, data, isLoading, isError, error } = useUserLogin();
+  const dataU  = useGetFetchQuery('user');
+
+  /* useEffect(() => {
+    console.log(dataU?.data?.usuario);
+    if(dataU){
+      if (dataU.data.usuario.role === "admin") {
+        navigate("/admin");
+      } else if (dataU.data.usuario.role === "turist") {
+        navigate("/user");
+      } else if (dataU.data.usuario.role === "recepcionist") {
+        navigate("/recepcionist");
+      }
+    }
+  }, []) */
 
   useEffect(() => {
     if (data) {

@@ -19,7 +19,7 @@ export default function DeleteUserAdmin() {
 
   useEffect(() => {
     if (data) {
-      console.log(data?.data);
+      //console.log(data?.data);
       if (data.data.status === 1) {
         setShowError(false);
         setShowCorrect(true);
@@ -38,7 +38,7 @@ export default function DeleteUserAdmin() {
     const info = {
       "user": user
     }
-    console.log(info)
+    //console.log(info)
     mutDeletUser(info)
   }
 

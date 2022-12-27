@@ -3,12 +3,24 @@ import Navbar from 'react-bootstrap/Navbar';
 import { BsArrowLeft } from 'react-icons/bs';
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { ImTicket } from "react-icons/im";
-import { Link } from 'react-router-dom';
+import { useQuery, useQueryClient } from 'react-query';
+import { Await, Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import '../styles/layouts/GeneralLayout.css'
 
 export default function GeneralLayout(props) {
     const {children,logout, back} = props
+    /* const navigate = useNavigate();
+    const queryClient = useQueryClient();
+
+    const {refetch} = useQuery('user')
+    function useHandleLogout(event) {
+        event.preventDefault();
+        const res = Await.refetch()
+        //queryClient.invalidateQueries('user')
+        navigate("/");
+    } */
+
     return (
         <>
             <Navbar bg="dark" className='nav-bar'>

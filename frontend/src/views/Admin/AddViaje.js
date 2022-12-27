@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button';
 import Form from "react-bootstrap/Form";
 import {useNavigate } from 'react-router-dom';
@@ -22,10 +22,23 @@ export default function AddViaje() {
   function validateForm() {
     return agency.length > 0 && origin.length > 0 && destination.length > 0 && days.length > 0 && price.length > 0;
   }
-
+  useEffect(() => {
+    if (data) {
+      //console.log(data?.data);
+      if (data.data.status === 1) {
+        setShowError(false);
+        setShowCorrect(true);
+        //navigate("/")
+      } else {
+        setShowError(true);
+      }
+    }
+  }, [data])
 
   function handleSubmit(event) {
     event.preventDefault();
+    setShowCorrect(false);
+    setShowError(false);
     const info = {
       "agency": agency,
       "origin": origin,

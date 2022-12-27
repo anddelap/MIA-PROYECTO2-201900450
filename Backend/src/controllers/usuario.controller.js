@@ -1,3 +1,5 @@
+// Obtener usuario para login
+
 const getUser = async (req,res) => {
     const {user,password} = req.body;
     const users = require("../../data/users.json");
@@ -41,7 +43,7 @@ const addUser = async (req,res) => {
         if (err) {
             res.json({
                 status: 0,
-                msg: "Erro: no se pudo crear el usuario",
+                msg: "Error: no se pudo crear el usuario",
             })
         }else{
             res.json({

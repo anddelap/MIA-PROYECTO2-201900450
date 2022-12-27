@@ -26,3 +26,18 @@ export const useAddViaje = () =>{
         }
     });
 }
+
+// Delete Viaje
+
+export const deleteViaje = (viaje) => {
+    return api.post('/viajes/deleteViaje', viaje)
+};
+
+export const useDeleteViaje = () =>{
+    //console.log(useMutation(logIn))
+    return useMutation(deleteViaje,{
+        onSuccess: (data) => {
+            console.log(data)
+        }
+    });
+}

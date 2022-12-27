@@ -9,7 +9,7 @@ router.use(cors())
 const viajeController = require('../controllers/viaje.controller');
 const validateAtributes = require('../middleware/validateAtributes');
 
-//Agregar carro a json
+//Agregar viaje a json
 router.post('/addViaje',[
     check('agency','Nombre de agencia obligatorio').not().isEmpty(),
     check('origin','Marca obligatorio').not().isEmpty(),
@@ -19,6 +19,17 @@ router.post('/addViaje',[
     check('status','Precio obligatorio').not().isEmpty(),
     validateAtributes
 ], viajeController.addViaje
+)
+
+//Eliminar viaje
+router.post('/deleteViaje',[
+    check('agency','Nombre de agencia obligatorio').not().isEmpty(),
+    check('origin','Marca obligatorio').not().isEmpty(),
+    check('destination','Placa obligatorio').not().isEmpty(),
+    check('days','Modelo obligatoria').not().isEmpty(),
+    check('price','Precio obligatorio').not().isEmpty(),
+    validateAtributes
+], viajeController.deleteViaje
 )
 
 module.exports = router;
