@@ -63,7 +63,7 @@ const addReservacion = async (req,res) => {
     const {user,viaje} = req.body;
     const reservacion = require("../../data/reservationsViajes.json");
     const viajes = require("../../data/viajes.json");
-    const viajeFiltrado = viajes.viajes.filter((v) => v.agency !== viaje.agency && v.origin !== viaje.origin && v.destination !== viaje.destination && v.days !== viaje.days && v.city !== viaje.city && v.price !== viaje.price);
+    const viajeFiltrado = viajes.viajes.filter((v) => v.agency !== viaje.agency || v.origin !== viaje.origin || v.destination !== viaje.destination || v.days !== viaje.days || v.city !== viaje.city || v.price !== viaje.price);
     reservacion.reservations.push({
         "user":user,
         "viaje":viaje
@@ -74,7 +74,8 @@ const addReservacion = async (req,res) => {
     fs.writeFile("data/viajes.json", JSON.stringify(viajes,null,4), (err) => {
         console.log(err)
     })
-    fs.writeFile("data/reservationsCars.json", JSON.stringify(reservacion,null,4), (err) => {
+    //Esto agrega la reservacion al archivo de reservaciones.json
+    fs.writeFile("data/reservationsViajes.json", JSON.stringify(reservacion,null,4), (err) => {
         if (err) {
             res.json({
                 status: 0,
@@ -89,8 +90,45 @@ const addReservacion = async (req,res) => {
     })
 }
 
+// Aceptar reservacion de viaje
+
+const acceptReservacion = async (req,res) => {
+    const fs = require("fs");
+    const {user,viaje} = req.body;
+    const reservacion = require("../../data/reservationsViajes.json");
+    const viajes = require("../../data/viajes.json");
+    const viajeFiltrado = viajes.viajes.filter((v) =>v.agency !== viaje.agency || v.origin !== viaje.origin || v.destination !== viaje.destination || v.days !== viaje.days || v.city !== viaje.city || v.price !== viaje.price);
+    const reservacionFiltrada = reservacion.reservations.filter((r) => r.user.user !== user.user || r.viaje.agency !== viaje.agency || r.viaje.origin !== viaje.origin || r.viaje.destination !== viaje.destination || r.viaje.days !== viaje.days || r.viaje.city !== viaje.city || r.viaje.price !== viaje.price);
+    viajes.viajes = viajeFiltrado;
+    viajes.viajes.push(viaje);
+    fs.writeFile("data/viajes.json", JSON.stringify(viajes,null,4), (err) => {
+        console.log(err)
+    })
+    reservacion.reservations = reservacionFiltrada;
+    if(viaje.status==2){
+        reservacion.reservations.push({
+            "user":user,
+            "viaje":viaje
+        })
+    }
+    fs.writeFile("data/reservationsViajes.json", JSON.stringify(reservacion,null,4), (err) => {
+        if (err) {
+            res.json({
+                status: 0,
+                msg: "Error: no se pudo gestionar la reservacion",
+            })
+        }else{
+            res.json({
+                status: 1,
+                msg: "Reservacion gestionada correctamente",
+            })
+        }
+    })
+
+}
 module.exports = {
     addViaje,
     deleteViaje,
-    addReservacion
+    addReservacion,
+    acceptReservacion
 }

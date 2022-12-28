@@ -13,6 +13,10 @@ const api = axios.create({
 
 export const getViajes = () => api.get('/viajes/getViajes').then((res) => res.data);
 
+// Get Reservaciones
+
+export const getReservaciones = () => api.get('/viajes/getReservaciones').then((res) => res.data);
+
 // Add Viaje
 
 export const addViaje = (viaje) => {
@@ -54,6 +58,20 @@ export const addReservacion = (reservacion) => {
 
 export const useAddReservacion = () =>{
     return useMutation(addReservacion,{
+        onSuccess: (data) => {
+            console.log(data)
+        }
+    });
+}
+
+// Accept/Decline Reservacion 
+
+export const acceptReservacion = (reservacion) => {
+    return api.post('/viajes/acceptReservacion', reservacion)
+}
+
+export const useAcceptReservacion = () =>{
+    return useMutation(acceptReservacion,{
         onSuccess: (data) => {
             console.log(data)
         }

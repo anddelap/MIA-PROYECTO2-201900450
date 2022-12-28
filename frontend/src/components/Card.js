@@ -19,7 +19,6 @@ export default function CardR(props) {
     };
     const dataU  = useGetFetchQuery('user');
     useEffect(() => {
-        console.log(dataU)
         if(!dataU){
             navigate('/')
         }
@@ -73,7 +72,12 @@ export default function CardR(props) {
                             <p>Ciudad: {info.city}</p>
                             <p>Precio: ${info.price}</p>
                             {info.status !== 0 ? (
-                                <p style={{color: "red"}}>Reservado</p>
+                                info.status === 1 ? (
+                                    <p style={{color: "red"}}>Reservado</p>
+                                ) : (
+                                    <p style={{color: "blue"}}>Confirmado</p>
+                                )
+
                             ):(
                                 <p style={{color: "green"}}>Disponible</p>
                             )}
@@ -84,7 +88,12 @@ export default function CardR(props) {
                             <p>Dias: {info.days}</p>
                             <p>Precio: ${info.price}</p>
                             {info.status !== 0 ? (
-                                <p style={{color: "red"}}>Reservado</p>
+                                info.status === 1 ? (
+                                    <p style={{color: "red"}}>Reservado</p>
+                                ) : (
+                                    <p style={{color: "blue"}}>Confirmado</p>
+                                )
+
                             ):(
                                 <p style={{color: "green"}}>Disponible</p>
                             )}

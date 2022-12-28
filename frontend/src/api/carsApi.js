@@ -13,7 +13,11 @@ const api = axios.create({
 
 export const getCars = () => api.get('/carros/getCars').then((res) => res.data);
 
-// Add Viaje
+// Get Reservaciones
+
+export const getReservaciones = () => api.get('/carros/getReservaciones').then((res) => res.data);
+
+// Add Car
 
 export const addCars = (car) => {
     /* api.post('/usuarios/getUser', user).then(function (response) {
@@ -58,3 +62,19 @@ export const useAddReservation = () =>{
         }
     });
 }
+
+// Accept/Decline Reservacion
+
+export const acceptReservation = (reservation) => {
+    return api.post('/carros/acceptReservacion', reservation)
+}
+
+export const useAcceptReservation = () =>{
+    return useMutation(acceptReservation,{
+        onSuccess: (data) => {
+            console.log(data)
+        }
+    });
+}
+
+

@@ -46,4 +46,21 @@ router.post('/addReservacion',[
     validateAtributes
 ], carController.addReservacion)
 
+//Get reservaciones
+router.get('/getReservaciones',(req, res)=>{
+    const reservaciones = require("../../data/reservationsCars.json");
+    res.json({
+        status: 1,
+        msq: "Todas las reservaciones",
+        reservaciones: reservaciones.reservations
+    })
+})
+
+//Aceptar reservacion
+router.post('/acceptReservacion',[
+    check ('user','Usuario obligatorio').not().isEmpty(),
+    check ('car','Ingprmacion de carro obligatorio').not().isEmpty(),
+    validateAtributes
+], carController.acceptReservacion)
+
 module.exports = router;

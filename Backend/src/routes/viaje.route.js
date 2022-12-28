@@ -50,4 +50,22 @@ router.post('/addReservacion',[
     validateAtributes
 ], viajeController.addReservacion)
 
+//Get reservaciones
+router.get('/getReservaciones',(req, res)=>{
+    const reservaciones = require("../../data/reservationsViajes.json");
+    res.json({
+        status: 1,
+        msq: "Todas las reservaciones",
+        reservaciones: reservaciones.reservations
+    })
+})
+
+//Aceptar reservacion
+router.post('/acceptReservacion',[
+    check ('user','Usuario obligatorio').not().isEmpty(),
+    check ('viaje','Informacion de viaje obligatorio').not().isEmpty(),
+    validateAtributes
+], viajeController.acceptReservacion)
+
+
 module.exports = router;
