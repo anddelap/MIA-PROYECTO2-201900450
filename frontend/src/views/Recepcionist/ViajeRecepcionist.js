@@ -1,13 +1,13 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-import { getReservaciones } from '../../api/viajesApi'
+import { getReservaciones } from '../../api/carsApi'
 import CardRevision from '../../components/CardRevision'
 import GeneralLayout from '../../layouts/GeneralLayout'
 
 export default function ViajeRecepcionist() {
   const {data, isLoading, error} = useQuery('viajes-res', getReservaciones)
   if(isLoading){
-    return <h1>Loading...</h1>
+    return <h3>Loading...</h3>
   }
   return (
     <GeneralLayout logout back="/recepcionist">

@@ -18,7 +18,7 @@ export const AdminMenu = [
         link: "/admin/delete-user"
     },
     {
-        title: "Historial de vuelos",
+        title: "Historial",
         icon:  <FaHistory size={70}/>,
         link: "/admin/history"
     },

@@ -12,14 +12,14 @@ const PASSWORD = process.env.PASS;
 const MAIL = process.env.MAIL;
 const NAME = process.env.NAME;
 
-console.log(USER);
-console.log(PASSWORD);
-console.log(MAIL);
-console.log(NAME);
+//console.log(USER);
+//console.log(PASSWORD);
+//console.log(MAIL);
+//console.log(NAME);
 
 function createAdmin (user, password, email, name) {
     
-    const fs = require("fs/promises");
+    const fs = require("fs");
     const users = require("../data/users.json");
     const admin = {
         "name":name,
@@ -36,18 +36,32 @@ function createAdmin (user, password, email, name) {
     users.users.push(admin);
     const cleanuser = JSON.stringify(users,null,4)
     //console.log(cleanuser);
-    try {
+    /* try {
         fs.writeFile("data/users.json",cleanuser)
         console.log("Admin creado correctamente");   
     } catch (error) {
         console.log(error);
         console.log("Error: no se pudo crear el admin");
     }
-
+    */
+    fs.truncate('data/users.json', 0, function(){console.log('done')})
+    fs.open("data/users.json", "a", (err, fd)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            fs.write(fd, JSON.stringify(users,null,4), (err, bytes)=>{
+                if(err){
+                    console.log(err.message);
+                }else{
+                    console.log(bytes +' bytes written');
+                }
+            })        
+        }
+    })
 }
 
 
-//createAdmin(USER, PASSWORD, MAIL, NAME);
+createAdmin(USER, PASSWORD, MAIL, NAME);
 
 //ROUTES
 
