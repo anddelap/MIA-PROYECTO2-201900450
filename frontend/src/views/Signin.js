@@ -118,7 +118,7 @@ export default function Signin() {
             <div className="signin">
               ¿Ya tienes cuenta? <Link to="/">Log in</Link>
             </div>
-            <Error msg="Las contraseñas no coinciden" showw={showError}/>
+            <Error msg={data?.data?.msg} showw={showError}/>
             <Correct msg={data?.data?.msg} showw={showCorrect}/>
           </div>
         </Form>

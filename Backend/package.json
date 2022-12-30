@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "amazon": "^0.0.0",
+    "amazon-cognito-identity-js": "^6.1.2",
+    "aws": "^0.0.3-2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
