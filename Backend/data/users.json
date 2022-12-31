@@ -1,46 +1,4 @@
 {
     "users": [
-        {
-            "name": "Administrator",
-            "user": "Administratorrrr",
-            "mail": "ldelap14@gmail.com",
-            "password": "Aa123456",
-            "role": "admin"
-        },
-        {
-            "name": "Administrator",
-            "user": "Administrator3",
-            "mail": "ldelap14@gmail.com",
-            "password": "Aa123456",
-            "role": "admin"
-        },
-        {
-            "name": "Administrator",
-            "user": "Administrator3",
-            "mail": "ldelap14@gmail.com",
-            "password": "Aa123456",
-            "role": "admin"
-        },
-        {
-            "name": "Administrator",
-            "user": "Administrator3",
-            "mail": "ldelap14@gmail.com",
-            "password": "Aa123456",
-            "role": "admin"
-        },
-        {
-            "name": "Administrator",
-            "user": "Administrator3",
-            "mail": "ldelap14@gmail.com",
-            "password": "Aa123456",
-            "role": "admin"
-        },
-        {
-            "name": "Administrator",
-            "user": "Administrator3",
-            "mail": "ldelap14@gmail.com",
-            "password": "Aa123456",
-            "role": "admin"
-        }
     ]
 }
