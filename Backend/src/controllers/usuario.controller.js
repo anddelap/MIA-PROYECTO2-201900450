@@ -1,12 +1,15 @@
 // Obtener usuario para login
 
-const { signInCognito } = require("../middleware/cognito");
+const { signInCognito, logInCognito } = require("../middleware/cognito");
 
 const getUser = async (req,res) => {
     const {user,password} = req.body;
     const users = require("../../data/users.json");
     const usuario = users.users.find((u) => u.user === user && u.password === password);
-    if(usuario){
+    const login = await logInCognito(user,password);
+    console.log("login")
+    console.log(login)
+    if(usuario && login.status === 1){
         res.json({
             status: 1,
             msg: "Usuario encontrado",
@@ -43,8 +46,8 @@ const addUser = async (req,res) => {
         "role":role
     })
     const cogUsu = await signInCognito(user, password, mail);
-    console.log("cogUsu")
-    console.log(cogUsu)
+    //console.log("cogUsu")
+    //console.log(cogUsu)
     if(cogUsu.status === 0){
         if(cogUsu.msg.code === "UsernameExistsException"){
             res.json({

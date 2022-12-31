@@ -28,46 +28,88 @@ const signInCognito = async (user, password, mail) => {
                 const cognitoUser = result.user;
                 console.log('user name is ' + cognitoUser.getUsername());
                 //res.status(200).send
-                return {
+                resolve({
                     'satus': 1,
                     'msg': "Usuario creado en cognito"
-                }
+                })
+                return;
             }
         });
     })
 }
 
-const logInCognito = async (req, res) => {
-    const {username, password} = req.body;
-    if(username.match(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)){
+const logInCognito = async (username, password) => {
+    //const {username, password} = req.body;
+    //console.log("username")
+    //console.log(username)
+    if(String(username).match(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)){
         console.log("email");
+        const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+            Email: username,
+            Password: password
+        });
+        console.log(authenticationDetails)
+        const userData = {
+            Username: username,
+            Pool: userPool
+        };
+        const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+        cognitoUser.authenticateUser(authenticationDetails, {
+            onSuccess: function (result) {
+                const verified = result;
+                console.log(verified);
+                /* res.status(200).json({
+                    'satus': 1,
+                    'message': "Usuario encontrado en cognito"
+                }) */
+            },
+            onFailure: function (err) {
+                console.log(err);
+                /* res.status(500).json({
+                    'satus': 0,
+                    'message': "Error: no existe usuerio en cognito"
+                }) */
+            }
+        });
+    } else{
+        //console.log("username");
+        return new Promise((resolve, reject) => {
+            const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+                Username: username,
+                Password: password
+            });
+            const userData = {
+                Username: username,
+                Pool: userPool
+            };
+            const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+            cognitoUser.authenticateUser(authenticationDetails, {
+                onSuccess: function (result) {
+                    const verified = result;
+                    console.log(verified);
+                    resolve({
+                        'status': 1,
+                        'msg': "Usuario creado en cognito"
+                    })
+                    return;
+                },
+                onFailure: function (err) {
+                    console.log(err);
+                    /* res.status(500).json({
+                        'satus': 0,
+                        'message': "Error: no existe usuerio en cognito"
+                    }) */
+                    resolve({
+                        'status': 0,
+                        'message': "Error: no existe usuerio en cognito"
+                    })
+                    return;
+                }
+            });
+
+
+        })
     }
-    const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-        Username: username,
-        Password: password
-    });
-    const userData = {
-        Username: username,
-        Pool: userPool
-    };
-    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    cognitoUser.authenticateUser(authenticationDetails, {
-        onSuccess: function (result) {
-            const verified = result;
-            console.log(verified);
-            res.status(200).json({
-                'satus': 1,
-                'message': "Usuario encontrado en cognito"
-            })
-        },
-        onFailure: function (err) {
-            console.log(err);
-            res.status(500).json({
-                'satus': 0,
-                'message': "Error: no existe usuerio en cognito"
-            })
-        }
-    });
 
 }
 

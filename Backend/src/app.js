@@ -69,23 +69,22 @@ async function createAdmin (user, password, email, name) {
                 msg: "Error: no se pudo crear el usuario administrador en cognito",
             })
         }
-    }else{
-
-        fs.truncate('data/users.json', 0, function(){console.log('done')})
-        fs.open("data/users.json", "a", (err, fd)=>{
-            if(err){
-                console.log(err.message);
-            }else{
-                fs.write(fd, JSON.stringify(users,null,4), (err, bytes)=>{
-                    if(err){
-                        console.log(err.message);
-                    }else{
-                        console.log(bytes +' bytes written');
-                    }
-                })        
-            }
-        })
     }
+    //console.log(users.users)
+    fs.truncate('data/users.json', 0, function(){console.log('done')})
+    fs.open("data/users.json", "a", (err, fd)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            fs.write(fd, JSON.stringify(users,null,4), (err, bytes)=>{
+                if(err){
+                    console.log(err.message);
+                }else{
+                    console.log(bytes +' bytes written');
+                }
+            })        
+        }
+    })
 }
 
 
