@@ -16,7 +16,7 @@ export default function ViajeRecepcionist() {
       </h2>
       <div className='res-body'>
         {data?.reservaciones?.map((viaje,index) => (
-            <CardRevision key={index} title={viaje.viaje.origin+' - '+viaje.viaje.destination} info={viaje.viaje} user={viaje.user}/>
+            <CardRevision key={index} title={viaje?.viaje?.origin+' - '+viaje?.viaje?.destination} info={viaje?.viaje} user={viaje?.user}/>
             //console.log(viaje) 
         ))}
       </div>

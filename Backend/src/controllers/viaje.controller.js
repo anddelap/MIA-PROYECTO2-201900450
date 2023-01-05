@@ -32,7 +32,7 @@ const deleteViaje = async (req,res) => {
     const fs = require("fs");
     const {agency,origin,destination,days,city,price} = req.body;
     const viaje = require("../../data/viajes.json");
-    const viajeFiltrado = viaje.viajes.filter((v) => v.agency !== agency && v.origin !== origin && v.destination !== destination && v.days !== days && v.city !== city && v.price !== price);
+    const viajeFiltrado = viaje.viajes.filter((v) => v.agency !== agency || v.origin !== origin || v.destination !== destination || v.days !== days || v.city !== city || v.price !== price);
     if(viajeFiltrado.length === viaje.viajes.length){
         res.json({
             status: 0,

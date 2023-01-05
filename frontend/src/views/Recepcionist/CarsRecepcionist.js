@@ -17,7 +17,7 @@ export default function CarsRecepcionist() {
       </h2>
       <div className='res-body'>
         {data?.reservaciones?.map((car,index) => (
-            <CardRevision key={index} title={car.car.marca+' '+car.car.model} info={car.car} user={car.user}/>
+            <CardRevision key={index} title={car?.car?.marca+' '+car?.car?.model} info={car?.car} user={car?.user}/>
             //console.log(viaje) 
         ))}
       </div>
